@@ -1,13 +1,12 @@
 using Counter.Interfaces.Factorys;
 using Counter.Objekte;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.Arm;
 
 namespace Counter.Controllers
 {
-    [ApiController]
+	[ApiController]
     [Route("[controller]")]
-    public class ADPController : ControllerBase
+    public class ADPController : Controller
     {
         const string FILENAME = "apidata.json";
 
@@ -19,11 +18,16 @@ namespace Counter.Controllers
         }
 
         [HttpGet(Name = "GetADP")]
-        public async Task<ActionResult<SafeADP>> Get()
+        public  IActionResult Get()
         {
             SafeADP sAdp = IOManager.LoadFileObjectFromJSON<SafeADP>(FILENAME, false);
             List<SafeADP> listAdp = new List<SafeADP>() { sAdp };
-            return sAdp;
+			JsonResult result = new JsonResult(
+                new {
+                    Beauftragung = sAdp.Beauftragung, 
+                    Buchung = sAdp.Buchung  
+                });
+			return result;
         }
 
         [HttpPost(Name = "PostADP")]
