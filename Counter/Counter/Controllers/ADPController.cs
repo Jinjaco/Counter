@@ -1,10 +1,12 @@
+using Counter.Authorization.ApiController;
 using Counter.Interfaces.Factorys;
 using Counter.Objekte;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Counter.Controllers
 {
-	[ApiController]
+    [ApiKey]
+    [ApiController]
     [Route("[controller]")]
     public class ADPController : Controller
     {
