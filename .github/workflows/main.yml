@@ -7,7 +7,7 @@ on:
     - main
 
 env:
-  AZURE_WEBAPP_NAME: current-time-service
+  AZURE_WEBAPP_NAME: sicounter
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
@@ -23,10 +23,10 @@ jobs:
           dotnet-version: '6.0.x'
           
       - name: Restore
-        run: dotnet restore ./CurrentTimeService.sln
+        run: dotnet restore ./Counter.sln
         
       - name: Build
-        run: dotnet build ./CurrentTimeService.sln --configuration Release --no-restore
+        run: dotnet build ./Counter.sln --configuration Release --no-restore
         
       - name: Publish
-        run: dotnet publish ./CurrentTimeService.sln --configuration Release --no-build
+        run: dotnet publish ./Counter.sln --configuration Release --no-build
